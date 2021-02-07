@@ -8,26 +8,27 @@ app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
 
-  res.send('it works!')
+  res.send('25 repos were retrieved from database!')
 });
 
 app.post('/repos/:term', function (req, res) {
   // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
-  const { term } = req.params;
-  console.log(term);
 
-  api.getReposByUsername(term, (err, data) => {
-    if (err) {
-      console.log(err)
+  // This route should take the github username provided
+  const { term } = req.params;
+
+  // and get the repo information from the github API, then
+  api.getReposByUsername(term, (error, response) => {
+    if (error) {
+      console.log(error)
 
     } else {
-      console.log(data)
+      // save the repo information in the database
+      res.send(response.data)
     }
   })
-  res.end();
+
+  // res.end();
 });
 
 
