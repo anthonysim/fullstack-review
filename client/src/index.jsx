@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 import axios from 'axios';
@@ -34,6 +34,12 @@ class App extends React.Component {
   }
 
   render() {
+    let count = 0;
+    const top25 = this.state.repos.slice(0, 25).map(({ id, name, created_at, star_count, login, url }) => {
+      return <tr key={id}><td>{count += 1}</td><td>{id}</td><td>{name}</td><td>{created_at}</td><td>{star_count}</td><td>{login}</td><td><a href={url} target="_blank">{url}</a></td></tr>
+    })
+    // console.log(top25)
+
     return (
       <div>
         <h1>Github Fetcher</h1>
@@ -46,6 +52,7 @@ class App extends React.Component {
         <table>
           <thead>
             <tr>
+              <th>Count</th>
               <th>Id</th>
               <th>Name</th>
               <th>Created At</th>
@@ -55,14 +62,15 @@ class App extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {top25}
+            {/* <tr>
               <td>231802923</td>
               <td>anthonysim.github.io</td>
               <td>2020-01-04T17:35:55Z</td>
               <td>0</td>
               <td>anthonysim</td>
               <td><a href="https://www.google.com" target="_blank">https://github.com/anthonysim/anthonysim.github.io</a></td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
