@@ -38,9 +38,10 @@ class App extends React.Component {
             <tr>
               <th>Id</th>
               <th>Name</th>
+              <th>Created At</th>
+              <th>Star Count</th>
               <th>Owner_Id</th>
               <th>Owner_Login</th>
-              <th>Repos_Url</th>
             </tr>
           </thead>
           <tbody>
@@ -50,6 +51,7 @@ class App extends React.Component {
               <td>31682285</td>
               <td>anthonysim</td>
               <td>https://api.github.com/users/anthonysim/repos</td>
+              <td>Anthony Sim</td>
             </tr>
           </tbody>
         </table>

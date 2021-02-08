@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const api = require('../helpers/github.js');
+const db = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 
@@ -23,12 +24,11 @@ app.post('/repos/:term', function (req, res) {
       console.log(error)
 
     } else {
-      // save the repo information in the database
-      res.send(response.data)
+      db.save(response.data);
+      res.end();
+      // res.send(response.data)
     }
   })
-
-  // res.end();
 });
 
 
