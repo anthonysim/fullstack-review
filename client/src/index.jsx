@@ -17,10 +17,12 @@ class App extends React.Component {
 
   componentDidMount() {
     api.getTop25Repos()
+      .then(res => console.log(res))
+      .catch(() => console.error('Something wrong happened!'))
+    // need to update state afterwards then reflect it below as a { '' }
   }
 
   search(term) {
-    // TODO
     console.log(`${term} was searched`);
 
     axios.post(`http://localhost:1128/repos/${term}`)

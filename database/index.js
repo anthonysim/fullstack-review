@@ -47,8 +47,6 @@ let save = (data) => {
         .catch(err => console.error('Something went wrong, did not save!'))
     }
   })
-
-
 }
 
 module.exports.save = save;
