@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getTop25Repos()
+    api.getTop25Repos().then(data => console.log(data))
   }
 
   search(term) {
@@ -45,18 +45,18 @@ class App extends React.Component {
               <th>Name</th>
               <th>Created At</th>
               <th>Star Count</th>
-              <th>Owner_Id</th>
-              <th>Owner_Login</th>
+              <th>Login</th>
+              <th>URL</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>231802923</td>
               <td>anthonysim.github.io</td>
-              <td>31682285</td>
+              <td>2020-01-04T17:35:55Z</td>
+              <td>0</td>
               <td>anthonysim</td>
-              <td>https://api.github.com/users/anthonysim/repos</td>
-              <td>Anthony Sim</td>
+              <td><a href="https://www.google.com" target="_blank">https://github.com/anthonysim/anthonysim.github.io</a></td>
             </tr>
           </tbody>
         </table>

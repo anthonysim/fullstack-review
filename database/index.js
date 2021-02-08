@@ -18,16 +18,16 @@ let save = (data) => {
   // TODO: Your code here
   const reposArr = [];
   for (let i = 0; i < data.length; i++) {
-    const { id, name, created_at, stargazers_count } = data[i];
-    const { id: ownerID, login } = data[i]['owner'];
+    const { id, name, created_at, stargazers_count, html_url } = data[i];
+    const { login } = data[i]['owner'];
 
     const reposObj = {
       id: id,
       name: name,
       created_at: created_at,
       star_count: stargazers_count,
-      owner_id: ownerID,
-      owner_login: login
+      login: login,
+      url: html_url
     }
 
     reposArr.push(reposObj)
