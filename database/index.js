@@ -58,7 +58,7 @@ exports.top25 = (callback) => {
     .then(models => {
 
       const modelArr = models.map(model => model['_doc'])
-        .filter(({ star_count }) => star_count > 5)
+        .filter(({ star_count }) => star_count > 50)
         .sort((a, b) => (a.star_count < b.star_count) ? 1 : -1)
 
       callback(null, modelArr)
