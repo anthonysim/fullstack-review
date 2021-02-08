@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const api = require('../helpers/github.js');
-// const top = require('../apis/top25.js');
+const { top25 } = require('../helpers/top25.js');
 const db = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -9,6 +9,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   // rev.();
+  top25();
   res.send('25 repos were retrieved from database!')
 });
 
