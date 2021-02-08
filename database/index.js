@@ -14,8 +14,10 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
+
+
 // This function should save a repo or repos to the MongoDB
-let save = (data) => {
+exports.save = (data) => {
   // TODO: Your code here
   const reposArr = [];
   for (let i = 0; i < data.length; i++) {
@@ -50,15 +52,19 @@ let save = (data) => {
   })
 }
 
-
+// This function gets the top 25 "stared" repos
 exports.top25 = (callback) => {
   Repo.find({})
     .then(models => {
-      const modelArr = models.map(model => model['_doc']);
+
+      const modelArr = models.map(model => model['_doc'])
+        .filter(({ star_count }) => star_count > 5)
+        .sort((a, b) => (a.star_count < b.star_count) ? 1 : -1)
+
       callback(null, modelArr)
     })
     .catch(() => callback('Something went wrong, database may be empty!', null))
   // console.log('you are getting something back!')
 }
 
-module.exports.save = save;
+// module.exports.save = save;

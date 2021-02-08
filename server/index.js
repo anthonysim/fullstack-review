@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const api = require('../helpers/github.js');
-const Repo = require('../database/index.js');
-const { top25 } = require('../database/index.js');
+const { save, top25 } = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 
@@ -14,9 +13,9 @@ app.get('/repos', function (req, res) {
       res.end();
 
     } else {
-      console.log(model)
-      res.end()
-      // res.send('25 repos were retrieved from database!')
+      // console.log(model)
+      // res.end()
+      res.send(model)
     }
   })
 });
@@ -31,7 +30,7 @@ app.post('/repos/:term', function (req, res) {
       res.end();
 
     } else {
-      db.save(response.data);
+      save(response.data);
       res.end();
       // res.send(response.data)
     }
