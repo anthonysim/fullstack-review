@@ -20,7 +20,7 @@ let save = (data) => {
   for (let i = 0; i < data.length; i++) {
     const { id, name, created_at, stargazers_count, html_url } = data[i];
     const { login } = data[i]['owner'];
-    console.log(login)
+
     const reposObj = {
       id: id,
       name: name,
@@ -32,11 +32,15 @@ let save = (data) => {
 
     reposArr.push(reposObj)
   }
-  console.log(reposArr[0]['login'])
+  // console.log(reposArr[0]['login'])
 
   Repo.findOne({ login: reposArr[0]['login'] }, (err, data) => {
     if (err) {
-      console.error('This user is already in the database, please type in a different username!')
+      console.error(err)
+
+    } if (data) {
+      console.log('This user is already in the database, please type in a different username!')
+
     } else {
       Repo.insertMany(reposArr)
         .then(() => console.log('Multiple Documents Saved!'))
