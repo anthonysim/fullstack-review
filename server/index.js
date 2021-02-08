@@ -1,16 +1,23 @@
 const express = require('express');
 const app = express();
 const api = require('../helpers/github.js');
-const { top25 } = require('../helpers/top25.js');
-const db = require('../database/index.js');
+const Repo = require('../database/index.js');
+const { top25 } = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/repos', function (req, res) {
-  // This route should send back the top 25 repos
-  // rev.();
-  top25();
-  res.send('25 repos were retrieved from database!')
+
+  top25((err, model) => {
+    if (err) {
+      console.error(err)
+      res.end();
+
+    } else {
+      console.log(model)
+      // res.send('25 repos were retrieved from database!')
+    }
+  })
 });
 
 app.post('/repos/:term', function (req, res) {
@@ -20,6 +27,7 @@ app.post('/repos/:term', function (req, res) {
   api.getReposByUsername(term, (error, response) => {
     if (error) {
       console.log(error)
+      res.end();
 
     } else {
       db.save(response.data);

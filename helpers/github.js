@@ -14,7 +14,7 @@ let getReposByUsername = (username, callback) => {
 
   axios.get(apiURL, options)
     .then(res => callback(null, res))
-    .catch(() => console.error('Sorry username does NOT exist, try again!'))
+    .catch(() => callback('Sorry username does NOT exist, try again!', null))
 }
 
 module.exports.getReposByUsername = getReposByUsername;

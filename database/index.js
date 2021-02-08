@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher', { useMongoClient: true })
+const axios = require('axios');
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
@@ -49,5 +50,12 @@ let save = (data) => {
   })
 }
 
+
+exports.top25 = (callback) => {
+  Repo.find({})
+    .then(model => callback(null, model))
+    .catch(() => callback('Something went wrong, database may be empty!', null))
+  // console.log('you are getting something back!')
+}
+
 module.exports.save = save;
-module.exports.Repo = Repo;
