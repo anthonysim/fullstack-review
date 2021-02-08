@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getTop25Repos().then(data => console.log(data))
+    api.getTop25Repos()
   }
 
   search(term) {

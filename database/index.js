@@ -7,8 +7,8 @@ let repoSchema = mongoose.Schema({
   name: String,
   created_at: String,
   star_count: Number,
-  owner_id: String,
-  owner_login: String,
+  login: String,
+  url: String,
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
@@ -20,7 +20,7 @@ let save = (data) => {
   for (let i = 0; i < data.length; i++) {
     const { id, name, created_at, stargazers_count, html_url } = data[i];
     const { login } = data[i]['owner'];
-
+    console.log(login)
     const reposObj = {
       id: id,
       name: name,
@@ -32,11 +32,19 @@ let save = (data) => {
 
     reposArr.push(reposObj)
   }
-  console.log(reposArr)
+  console.log(reposArr[0]['login'])
 
-  Repo.insertMany(reposArr)
-    .then(() => console.log('Multiple Documents Saved!'))
-    .catch(err => console.error('Something went wrong, did not save!'))
+  Repo.findOne({ login: reposArr[0]['login'] }, (err, data) => {
+    if (err) {
+      console.error('This user is already in the database, please type in a different username!')
+    } else {
+      Repo.insertMany(reposArr)
+        .then(() => console.log('Multiple Documents Saved!'))
+        .catch(err => console.error('Something went wrong, did not save!'))
+    }
+  })
+
+
 }
 
 module.exports.save = save;

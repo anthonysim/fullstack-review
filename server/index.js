@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const api = require('../helpers/github.js');
-// const rev = require('../apis/apis.js');
+// const top = require('../apis/top25.js');
 const db = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
