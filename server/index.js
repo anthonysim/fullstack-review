@@ -15,6 +15,7 @@ app.get('/repos', function (req, res) {
 
     } else {
       console.log(model)
+      res.end()
       // res.send('25 repos were retrieved from database!')
     }
   })

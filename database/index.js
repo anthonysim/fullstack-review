@@ -53,7 +53,10 @@ let save = (data) => {
 
 exports.top25 = (callback) => {
   Repo.find({})
-    .then(model => callback(null, model))
+    .then(models => {
+      const modelArr = models.map(model => model['_doc']);
+      callback(null, modelArr)
+    })
     .catch(() => callback('Something went wrong, database may be empty!', null))
   // console.log('you are getting something back!')
 }
