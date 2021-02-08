@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 import axios from 'axios';
+import api from './apis/apis.jsx'
 
 
 class App extends React.Component {
@@ -12,6 +13,10 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
+  }
+
+  componentDidMount() {
+    api.getTop25Repos()
   }
 
   search(term) {
