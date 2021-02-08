@@ -18,16 +18,10 @@ class App extends React.Component {
   componentDidMount() {
     api.getTop25Repos()
       .then(res => {
-        const dataArr = [];
-
-        let len = 25 < res.data.length ? 25 : res.data.length;
-        for (let i = 0; i < len; i++) {
-          dataArr.push(res.data[i])
-        }
-        console.log(dataArr)
+        console.log(res.data)
+        this.setState({ repos: res.data })
       })
       .catch(() => console.error('Something wrong happened!'))
-    // need to update state afterwards then reflect it below as a { '' }
   }
 
   search(term) {
@@ -43,6 +37,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Github Fetcher</h1>
+        {/* <h1>{this.state.repos[0]}</h1> */}
         <RepoList repos={this.state.repos} />
         <Search onSearch={this.search.bind(this)} />
         <br />
