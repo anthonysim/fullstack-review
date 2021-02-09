@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher', { useMongoClient: true })
+mongoose.connect('mongodb://localhost/fetcher', { useMongoClient: true });
 const axios = require('axios');
 
 let repoSchema = mongoose.Schema({

@@ -21,16 +21,19 @@ class App extends React.Component {
         console.log(res.data)
         this.setState({ repos: res.data })
       })
-      .catch(() => console.error('Something wrong happened!'))
+      .catch(() => console.error('Something wrong happened or no repos in database!'))
   }
 
   search(term) {
     console.log(`${term} was searched`);
 
     axios.post(`http://localhost:1128/repos/${term}`)
-      // need to do a get top 25 and update state.repos then render on the table below
-      .then(res => console.log(res.data))
-      .catch(err => console.error(err))
+      .then(() => api.getTop25Repos())
+      .then(res => {
+        console.log(res.data)
+        this.setState({ repos: res.data })
+      })
+      .catch(() => console.error('Something wrong happened!'))
   }
 
   render() {
