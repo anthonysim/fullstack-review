@@ -28,6 +28,7 @@ class App extends React.Component {
     console.log(`${term} was searched`);
 
     axios.post(`http://localhost:1128/repos/${term}`)
+      .then(() => console.log('Username has been posted!'))
       .then(() => api.getTop25Repos())
       .then(res => {
         console.log(res.data)
@@ -39,7 +40,17 @@ class App extends React.Component {
   render() {
     let count = 0;
     const top25 = this.state.repos.slice(0, 25).map(({ id, name, created_at, star_count, login, url }) => {
-      return <tr key={id}><td>{count += 1}</td><td>{id}</td><td>{name}</td><td>{created_at}</td><td>{star_count}</td><td>{login}</td><td><a href={url} target="_blank">{url}</a></td></tr>
+      return (
+        <tr key={id}>
+          <td>{count += 1}</td>
+          <td>{id}</td>
+          <td>{login}</td>
+          <td>{name}</td>
+          <td>{star_count}</td>
+          <td><a href={url} target="_blank">{url}</a></td>
+          <td>{created_at}</td>
+        </tr>
+      )
     })
     // console.log(top25)
 
@@ -57,11 +68,11 @@ class App extends React.Component {
             <tr>
               <th>Count</th>
               <th>Id</th>
-              <th>Name</th>
-              <th>Created At</th>
-              <th>Star Count</th>
               <th>Login</th>
+              <th>Name</th>
+              <th>Star Count</th>
               <th>URL</th>
+              <th>Created At</th>
             </tr>
           </thead>
           <tbody>
