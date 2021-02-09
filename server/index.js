@@ -34,6 +34,7 @@ app.post('/repos/:term', function (req, res) {
       save(response.data, (err, message) => {
         if (err) {
           console.error(err)
+          res.end();
 
         } else {
           console.log(message)
