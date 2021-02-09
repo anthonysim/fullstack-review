@@ -18,7 +18,7 @@ class App extends React.Component {
   componentDidMount() {
     api.getTop25Repos()
       .then(res => {
-        console.log(res.data)
+        console.log("componentDidMount", res.data)
         this.setState({ repos: res.data })
       })
       .catch(() => console.error('Something wrong happened or no repos in database!'))
@@ -31,7 +31,7 @@ class App extends React.Component {
       .then(() => console.log('Username has been posted!'))
       .then(() => api.getTop25Repos())
       .then(res => {
-        console.log(res.data)
+        console.log('search add repo button', res.data)
         this.setState({ repos: res.data })
       })
       .catch(() => console.error('Something wrong happened!'))
@@ -56,7 +56,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Github Fetcher</h1>
+        <h1 style={{ textAlign: "center" }}>Github Fetcher</h1>
         {/* <h1>{this.state.repos[0]}</h1> */}
         <RepoList repos={this.state.repos} />
         <Search onSearch={this.search.bind(this)} />
@@ -87,7 +87,7 @@ class App extends React.Component {
             </tr> */}
           </tbody>
         </table>
-      </div>
+      </div >
     )
   }
 }
