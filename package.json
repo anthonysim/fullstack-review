@@ -6,7 +6,8 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\""
+    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\"",
+    "start": "concurrently \"webpack\" \"server/index.js\""
   },
   "author": "Beth Johnson",
   "license": "ISC",
