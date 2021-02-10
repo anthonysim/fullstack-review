@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const path = require('path')
 const api = require('../helpers/github.js');
 const { save, top25 } = require('../database/index.js');
 
-app.use(express.static(__dirname + '/../client/dist'));
+
+app.use(express.static(__dirname + './../client/dist'));
 
 app.get('/repos', function (req, res) {
 
@@ -48,5 +50,7 @@ app.post('/repos/:term', function (req, res) {
 
 // Server Connection
 let port = process.env.PORT || 1128;
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on PORT ${port} 👍!`)
+});
 
