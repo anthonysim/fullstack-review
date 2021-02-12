@@ -6,7 +6,9 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\""
+    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\"",
+    "heroku-postbuild": "webpack --webpack.config.js",
+    "start": "node server/index.js"
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -24,7 +26,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.15.0",
     "jquery": "^3.1.1",
-    "mongoose": "^4.9.6",
+    "mongoose": "^5.11.15",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }

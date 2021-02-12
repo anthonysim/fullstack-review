@@ -5,8 +5,15 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' })
 
 
+// mongoose.connect(mongodb://localhost/fetcher, { useMongoClient: true });
 
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+}).then(() => console.log('Mongo connected!')).catch(() => console.error('Something wrong happened!'))
+
 const axios = require('axios');
 
 let repoSchema = mongoose.Schema({
