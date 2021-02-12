@@ -27,7 +27,7 @@ class App extends React.Component {
   search(term) {
     console.log(`${term} was searched`);
 
-    axios.post(`http://localhost:1128/repos/${term}`)
+    axios.post(`repos/${term}`)
       .then(() => console.log('Username has been posted!'))
       .then(() => api.getTop25Repos())
       .then(res => {
