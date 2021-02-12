@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher', { useMongoClient: true });
+const dotenv = require('dotenv');
+
+// config secret files
+dotenv.config({ path: './config/config.env' })
+
+
+
+mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
 const axios = require('axios');
 
 let repoSchema = mongoose.Schema({

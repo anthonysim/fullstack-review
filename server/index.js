@@ -3,7 +3,10 @@ const app = express();
 const path = require('path')
 const api = require('../helpers/github.js');
 const { save, top25 } = require('../database/index.js');
+const dotenv = require('dotenv');
 
+// config secret files
+dotenv.config({ path: './config/config.env' })
 
 app.use(express.static(__dirname + './../client/dist'));
 
